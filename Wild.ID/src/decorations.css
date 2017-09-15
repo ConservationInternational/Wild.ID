@@ -1,0 +1,17 @@
+/*
+Here comes the text of your license
+Each line should be prefixed with 
+*/
+/* 
+    Created on : Sep 22, 2015, 2:22:56 PM
+    Author     : kailin
+*/
+
+.warning {
+    -fx-background-color: #FF000055;
+}
+
+.success {
+    -fx-background-color: #00FF0055;
+}
+

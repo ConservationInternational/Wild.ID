@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.DualDeployment" optimistic-lock="version" table="dual_deployment">
+        <id name="dualDeploymentId" type="java.lang.Integer">
+            <column name="dual_deployment_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.wildid.entity.Deployment" fetch="select" name="deploymentByDeployment2Id">
+            <column name="deployment_2_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.Deployment" fetch="select" name="deploymentByDeployment1Id">
+            <column name="deployment_1_id" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

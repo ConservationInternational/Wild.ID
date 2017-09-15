@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.ImageExif" optimistic-lock="version" table="image_exif">
+        <id name="imageExifId" type="java.lang.Integer">
+            <column name="image_exif_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.wildid.entity.Image" fetch="select" lazy="false" name="image">
+            <column name="image_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.ImageFeature" fetch="select" lazy="false" name="imageFeature">
+            <column name="image_feature_id" not-null="true"/>
+        </many-to-one>
+        <property name="exifTagValue" type="string">
+            <column length="256" name="exif_tag_value"/>
+        </property>
+    </class>
+</hibernate-mapping>

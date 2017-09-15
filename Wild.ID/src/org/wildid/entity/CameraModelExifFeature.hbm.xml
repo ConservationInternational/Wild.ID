@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 7, 2015 9:00:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="org.wildid.entity.CameraModelExifFeature" table="camera_model_exif_feature" catalog="wild_ID" optimistic-lock="version">
+        <id name="cameraModelExifFeatureId" type="java.lang.Integer">
+            <column name="camera_model_exif_feature_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cameraModel" class="org.wildid.entity.CameraModel" fetch="select">
+            <column name="camera_model_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="imageFeature" class="org.wildid.entity.ImageFeature" lazy="false" fetch="select">
+            <column name="image_feature_id" />
+        </many-to-one>
+        <property name="exifTagName" type="string">
+            <column name="exif_tag_name" length="64" not-null="true" />
+        </property>
+        <property name="exifTagValue" type="string">
+            <column name="exif_tag_value" length="256" not-null="true" />
+        </property>
+        <property name="secondaryTagDelimit" type="string">
+            <column name="secondary_tag_delimit" length="1" not-null="false" />
+        </property>
+        <property name="secondaryTagName" type="string">
+            <column name="secondary_tag_name" length="16" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>

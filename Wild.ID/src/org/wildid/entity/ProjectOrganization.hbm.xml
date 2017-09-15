@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.ProjectOrganization" optimistic-lock="version" table="project_organization">
+        <composite-id class="org.wildid.entity.ProjectOrganizationId" name="id">
+            <key-property name="projectId" type="int">
+                <column name="project_id"/>
+            </key-property>
+            <key-property name="organizationId" type="int">
+                <column name="organization_id"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="org.wildid.entity.Organization" lazy="false" fetch="select" insert="false" name="organization" update="false">
+            <column name="organization_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.Project" fetch="select" insert="false" name="project" update="false">
+            <column name="project_id" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

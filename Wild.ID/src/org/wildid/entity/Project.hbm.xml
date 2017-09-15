@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.Project" optimistic-lock="version" table="project">
+        <id name="projectId" type="java.lang.Integer">
+            <column name="project_id"/>
+            <!-- generator class="identity" /-->
+            <generator class="org.wildid.entity.UseExistingOrGenerateIdGenerator"/>
+        </id>
+        <many-to-one class="org.wildid.entity.Country" fetch="select" lazy="false" name="country">
+            <column name="country_id"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.Person" fetch="select" name="contentPerson">
+            <column name="contact_person_id"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.ProjectStatus" fetch="select" lazy="false" name="projectStatus">
+            <column name="project_status_id"/>
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" not-null="true"/>
+        </property>
+        <property name="shortName" type="string">
+            <column length="16" name="short_name"/>
+        </property>
+        <property name="abbrevName" type="string">
+            <column length="8" name="abbrev_name" not-null="true"/>
+        </property>
+        <property name="objective" type="string">
+            <column length="65535" name="objective"/>
+        </property>
+        <property name="useAndConstraints" type="string">
+            <column length="65535" name="use_and_constraints"/>
+        </property>
+        <property name="startTime" type="timestamp">
+            <column length="19" name="start_time"/>
+        </property>
+        <property name="endTime" type="timestamp">
+            <column length="19" name="end_time"/>
+        </property>
+        <property name="latitude" type="java.lang.Double">
+            <column name="latitude" precision="22" scale="0"/>
+        </property>
+        <property name="longitude" type="java.lang.Double">
+            <column name="longitude" precision="22" scale="0"/>
+        </property>
+        <property name="timeZone" type="string">
+            <column length="50" name="time_zone"/>
+        </property>
+        <property name="lastUpdateTime" type="timestamp">
+            <column length="19" name="last_update_time" not-null="true"/>
+        </property>
+        <property name="respositoryId" type="java.lang.Integer">
+            <column name="respository_id"/>
+        </property>
+        <property name="respositoryLastSyncTime" type="timestamp">
+            <column length="19" name="respository_last_sync_time"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="false" name="cameraTrapArrays" table="camera_trap_array">
+            <key>
+                <column name="project_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.CameraTrapArray"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="false" name="projectOrganizations" table="project_organization" sort="org.wildid.entity.ProjectOrganizationComparator">
+            <key>
+                <column name="project_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.ProjectOrganization"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="false" name="projectPersonRoles" table="project_person_role">
+            <key>
+                <column name="project_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.ProjectPersonRole"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="false" name="events" table="event" sort="org.wildid.entity.EventComparator">
+            <key>
+                <column name="project_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.Event"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="false" name="cameras" table="camera">
+            <key>
+                <column name="project_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.Camera"/>
+        </set>
+    </class>
+</hibernate-mapping>

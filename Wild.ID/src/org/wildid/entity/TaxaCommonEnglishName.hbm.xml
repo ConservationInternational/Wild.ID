@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.TaxaCommonEnglishName" optimistic-lock="version" table="common_name_eng">
+        <id name="taxaCommonEnglishNameId" type="java.lang.Integer">
+            <column name="common_name_eng_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.wildid.entity.FamilyGenusSpecies" fetch="select" name="species">
+            <column name="family_genus_species_id" not-null="true"/>
+        </many-to-one>
+        <property name="name" type="string">
+            <column length="64" name="name" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.CameraTrapArray" optimistic-lock="version" table="camera_trap_array">
+        <id name="cameraTrapArrayId" type="java.lang.Integer">
+            <column name="camera_trap_array_id"/>
+            <!-- generator class="identity"/-->
+            <generator class="org.wildid.entity.UseExistingOrGenerateIdGenerator"/>
+        </id>
+        <many-to-one class="org.wildid.entity.Project" fetch="select" name="project">
+            <column name="project_id" not-null="true"/>
+        </many-to-one>
+        <property name="name" type="string">
+            <column length="128" name="name" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="false" name="cameraTraps" table="camera_trap">
+            <key>
+                <column name="camera_trap_array_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.CameraTrap"/>
+        </set>
+    </class>
+</hibernate-mapping>

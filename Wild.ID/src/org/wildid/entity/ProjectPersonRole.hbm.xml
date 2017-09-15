@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.ProjectPersonRole" optimistic-lock="version" table="project_person_role">
+        <id name="projectPersonRoleId" type="java.lang.Integer">
+            <column name="project_person_role_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.wildid.entity.Person" lazy="false" fetch="select" name="person">
+            <column name="person_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.Project" lazy="false" fetch="select" name="project">
+            <column name="project_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.Role" lazy="false" fetch="select" name="role">
+            <column name="role_id" not-null="true"/>
+        </many-to-one>
+        <property name="startTime" type="timestamp">
+            <column length="19" name="start_time" not-null="false"/>
+        </property>
+        <property name="endTime" type="timestamp">
+            <column length="19" name="end_time" not-null="false"/>
+        </property>
+    </class>
+</hibernate-mapping>

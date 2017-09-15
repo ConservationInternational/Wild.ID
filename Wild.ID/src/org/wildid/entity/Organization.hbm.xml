@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.Organization" optimistic-lock="version" table="organization">
+        <id name="organizationId" type="java.lang.Integer">
+            <column name="organization_id"/>
+            <!-- generator class="identity"/ -->
+            <generator class="org.wildid.entity.UseExistingOrGenerateIdGenerator"/>
+        </id>
+        <many-to-one class="org.wildid.entity.Country" lazy="false" fetch="select" name="country">
+            <column name="country_id"/>
+        </many-to-one>
+        <property name="name" type="string">
+            <column length="200" name="name" not-null="true"/>
+        </property>
+        <property name="address" type="string">
+            <column length="200" name="address"/>
+        </property>
+        <property name="address2" type="string">
+            <column name="address2"/>
+        </property>
+        <property name="city" type="string">
+            <column length="50" name="city"/>
+        </property>
+        <property name="state" type="string">
+            <column length="50" name="state"/>
+        </property>
+        <property name="postalCode" type="string">
+            <column length="16" name="postal_code"/>
+        </property>
+        <property name="phone" type="string">
+            <column length="32" name="phone"/>
+        </property>
+        <property name="email" type="string">
+            <column length="64" name="email"/>
+        </property>
+        <!--
+        <set fetch="select" inverse="true" lazy="false" name="projectOrganizations" table="project_organization">
+          <key>
+            <column name="organization_id" not-null="true"/>
+          </key>
+          <one-to-many class="org.wildid.entity.ProjectOrganization"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="false" name="persons" table="person">
+          <key>
+            <column name="organization_id"/>
+          </key>
+          <one-to-many class="org.wildid.entity.Person"/>
+        </set>
+        -->
+    </class>
+</hibernate-mapping>

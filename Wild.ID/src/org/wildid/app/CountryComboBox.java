@@ -1,0 +1,103 @@
+/*
+Copyright (c) 2007 The Regents of the University of California
+
+Permission to use, copy, modify, and distribute this software and its documentation
+for educational, research and non-profit purposes, without fee, and without a written
+agreement is hereby granted, provided that the above copyright notice, this
+paragraph and the following three paragraphs appear in all copies.
+
+Permission to make commercial use of this software may be obtained
+by contacting:
+Technology Transfer Office
+9500 Gilman Drive, Mail Code 0910
+University of California
+La Jolla, CA 92093-0910
+(858) 534-5815
+invent@ucsd.edu
+
+THIS SOFTWARE IS PROVIDED BY THE REGENTS OF THE UNIVERSITY OF CALIFORNIA AND
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+package org.wildid.app;
+
+import java.util.Locale;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.util.StringConverter;
+import org.wildid.entity.Country;
+import org.wildid.service.CountryService;
+import org.wildid.service.CountryServiceImpl;
+
+public class CountryComboBox extends ComboBox {
+
+    private LanguageModel language;
+
+    public CountryComboBox(LanguageModel language) {
+
+        this.language = language;
+
+        CountryService countryService = new CountryServiceImpl();
+        ObservableList<Country> countries = FXCollections.observableList(countryService.listCountry());
+        this.setItems(countries);
+        this.getItems().add(null);
+
+        Locale defaultLocale = Locale.getDefault();
+        for (Country country : countries) {
+            if (country != null && country.getName().equals(defaultLocale.getDisplayCountry())) {
+                this.setValue(country);
+                break;
+            }
+        }
+
+        this.setCellFactory((comboBox) -> {
+            return new ListCell<Country>() {
+                @Override
+                protected void updateItem(Country item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                    } else {   
+                        try {
+                           setText(language.getString("country_" + item.getCode()));  
+                        } catch (Exception ex) {
+                            setText(item.getName());
+                        }
+                    }
+                }
+            };
+        });
+
+        this.setConverter(new StringConverter<Country>() {
+            @Override
+            public String toString(Country country) {
+                if (country == null) {
+                    return null;
+                } else {  
+                    try {
+                        return language.getString("country_" + country.getCode());
+                    } catch (Exception ex) {
+                        return country.getName();
+                    }
+                }
+            }
+
+            @Override
+            public Country fromString(String personString) {
+                return null; // No conversion fromString needed.
+            }
+        });
+
+    }
+
+}

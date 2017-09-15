@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.FamilyGenusSpecies" optimistic-lock="version" table="family_genus_species">
+        <id name="familyGenusSpeciesId" type="java.lang.Integer">
+            <column name="family_genus_species_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="class_" type="string">
+            <column length="64" name="class"/>
+        </property>
+        <property name="order" type="string">
+            <column length="64" name="order_taxa"/>
+        </property>
+        <property name="family" type="string">
+            <column length="64" name="family"/>
+        </property>
+        <property name="genus" type="string">
+            <column length="64" name="genus"/>
+        </property>
+        <property name="species" type="string">
+            <column length="64" name="species"/>
+        </property>
+        <property name="iucnSpeciesId" type="string">
+            <column length="32" name="iucn_species_id"/>
+        </property>
+        <!--
+        <set fetch="select" inverse="true" lazy="true" name="imageSpecieses" table="image_species">
+            <key>
+                <column name="family_genus_species_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.ImageSpecies"/>
+        </set>
+        -->
+        <set fetch="select" inverse="true" lazy="false" name="taxaCommonEnglishNames" table="common_name_eng">
+            <key>
+                <column name="common_name_eng_id" not-null="false"/>
+            </key>
+            <one-to-many class="org.wildid.entity.TaxaCommonEnglishName"/>
+        </set>
+    </class>
+</hibernate-mapping>

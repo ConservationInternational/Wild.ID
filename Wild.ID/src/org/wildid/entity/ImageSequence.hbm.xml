@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.ImageSequence" optimistic-lock="version" table="image_sequence">
+        <id name="imageSequenceId" type="java.lang.Integer">
+            <column name="image_sequence_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.wildid.entity.Deployment" fetch="select" name="deployment">
+            <column name="deployment_id" not-null="true"/>
+        </many-to-one>
+        <set fetch="select" inverse="true" lazy="false" name="images" table="image">
+            <key>
+                <column name="image_sequence_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.Image"/>
+        </set>
+    </class>
+</hibernate-mapping>

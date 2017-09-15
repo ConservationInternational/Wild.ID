@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 7, 2015 9:00:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="org.wildid.entity.ImageFeature" table="image_feature" catalog="wild_ID" optimistic-lock="version">
+        <id name="imageFeatureId" type="java.lang.Integer">
+            <column name="image_feature_id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" not-null="true" />
+        </property>
+        <property name="defaultExifTagName" type="string">
+            <column name="default_exif_tag_name" length="64" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

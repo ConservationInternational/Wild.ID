@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/wild_ID?autoReconnect=true&amp;characterEncoding=utf8&amp;useUnicode=true&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=utf8</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">123456</property>
+    
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">300</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+        
+        <!-- property name="hibernate.c3p0.idle_test_period">3000</property --> 
+        <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
+        <mapping resource="org/wildid/entity/ImageExif.hbm.xml"/>
+        <mapping resource="org/wildid/entity/Image.hbm.xml"/>
+        <mapping resource="org/wildid/entity/Country.hbm.xml"/>
+        <mapping resource="org/wildid/entity/ProjectOrganization.hbm.xml"/>
+        <mapping resource="org/wildid/entity/DualDeployment.hbm.xml"/>
+        <mapping resource="org/wildid/entity/Project.hbm.xml"/>
+        <mapping resource="org/wildid/entity/ImageExifExtend.hbm.xml"/>
+        <mapping resource="org/wildid/entity/Camera.hbm.xml"/>
+        <mapping resource="org/wildid/entity/FamilyGenusSpecies.hbm.xml"/>
+        <mapping resource="org/wildid/entity/Person.hbm.xml"/>
+        <mapping resource="org/wildid/entity/ImageIndividual.hbm.xml"/>
+        <mapping resource="org/wildid/entity/ImageSpecies.hbm.xml"/>
+        <mapping resource="org/wildid/entity/FeatureType.hbm.xml"/>
+        <mapping resource="org/wildid/entity/FailureType.hbm.xml"/>
+        <mapping resource="org/wildid/entity/ImageType.hbm.xml"/>
+        <mapping resource="org/wildid/entity/ImageUncertaintyType.hbm.xml"/>
+        <mapping resource="org/wildid/entity/CameraTrapArray.hbm.xml"/>
+        <mapping resource="org/wildid/entity/ProjectStatus.hbm.xml"/>
+        <mapping resource="org/wildid/entity/CameraTrap.hbm.xml"/>
+        <mapping resource="org/wildid/entity/BaitType.hbm.xml"/>
+        <mapping resource="org/wildid/entity/ProjectPersonRole.hbm.xml"/>
+        <mapping resource="org/wildid/entity/Role.hbm.xml"/>
+        <mapping resource="org/wildid/entity/Continent.hbm.xml"/>
+        <mapping resource="org/wildid/entity/CameraModel.hbm.xml"/>
+        <mapping resource="org/wildid/entity/CameraModelExtendTag.hbm.xml"/>
+        <mapping resource="org/wildid/entity/HomoSapiensType.hbm.xml"/>
+        <mapping resource="org/wildid/entity/Deployment.hbm.xml"/>
+        <mapping resource="org/wildid/entity/ImageSequence.hbm.xml"/>
+        <mapping resource="org/wildid/entity/Event.hbm.xml"/>
+        <mapping resource="org/wildid/entity/ImageHomoSapiensType.hbm.xml"/>
+        <mapping resource="org/wildid/entity/Organization.hbm.xml"/>
+        <mapping resource="org/wildid/entity/CameraModelExifFeature.hbm.xml"/>
+        <mapping resource="org/wildid/entity/ImageFeature.hbm.xml"/>
+        <mapping resource="org/wildid/entity/TaxaCommonEnglishName.hbm.xml"/>
+        <mapping resource="org/wildid/entity/Preference.hbm.xml"/>
+        <mapping resource="org/wildid/entity/Age.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.Image" optimistic-lock="version" table="image">
+        <id name="imageId" type="java.lang.Integer">
+            <column name="image_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.wildid.entity.ImageSequence" fetch="select" name="imageSequence">
+            <column name="image_sequence_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.ImageType" fetch="select" lazy="false" name="imageType">
+            <column name="image_type_id" not-null="false"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.Person" fetch="select" lazy="false" name="person">
+            <column name="image_type_identify_person_id" not-null="false"/>
+        </many-to-one>
+        <property name="timeCaptured" type="timestamp">
+            <column length="19" name="time_captured" not-null="true"/>
+        </property>
+        <property name="rawName" type="string">
+            <column length="128" name="raw_name" not-null="true"/>
+        </property>
+        <property name="systemName" type="string">
+            <column length="128" name="system_name"/>
+        </property>
+        <property name="note" type="string">
+            <column length="65535" name="note"/>
+        </property>
+        <property name="restrictionsOnAccess" type="string">
+            <column length="65535" name="restrictions_on_access"/>
+        </property>
+        <property name="displayFlag" type="string">
+            <column length="128" name="display_flag"/>
+        </property>
+        <property name="displayFlagReason" type="string">
+            <column length="65535" name="display_flag_reason"/>
+        </property>
+        <property name="embargoPeriod" type="string">
+            <column length="128" name="embargo_period"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="false" name="imageExifs" table="image_exif">
+            <key>
+                <column name="image_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.ImageExif"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="imageExifExtends" table="image_exif_extend">
+            <key>
+                <column name="image_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.ImageExifExtend"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="false" name="imageSpecieses" table="image_species" order-by="imageSpeciesId">
+            <key>
+                <column name="image_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.ImageSpecies"/>
+        </set>
+        <!--
+        <set fetch="select" inverse="true" lazy="false" name="imageHomoSapiensTypes" table="image_homo_sapiens_type">
+          <key>
+            <column name="image_id" not-null="true"/>
+          </key>
+          <one-to-many class="org.wildid.entity.ImageHomoSapiensType"/>
+        </set>
+        -->
+    </class>
+</hibernate-mapping>

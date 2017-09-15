@@ -1,0 +1,7 @@
+
+CREATE TABLE  IF NOT EXISTS `age` (
+  `age_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`age_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+

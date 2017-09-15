@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.Preference" optimistic-lock="version" table="preference">
+        <id name="preferenceId" type="java.lang.Integer">
+            <column name="preference_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.wildid.entity.Person" fetch="select" lazy="false" name="defaultAnnotationPerson">
+            <column name="annotation_default_person_id" not-null="false"/>
+        </many-to-one>
+        <property name="language" type="string">
+            <column length="32" name="language" not-null="true"/>
+        </property>
+        <property name="style" type="string">
+            <column length="32" name="style" not-null="true"/>
+        </property>
+        <property name="timeGroupInterval" type="java.lang.Integer">
+            <column name="annotation_time_group_interval" not-null="true"/>
+        </property>
+        <property name="speciesNaming" type="string">
+            <column length="64" name="annotation_species_naming" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

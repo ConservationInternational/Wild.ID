@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.Camera" optimistic-lock="version" table="camera">
+        <id name="cameraId" type="java.lang.Integer">
+            <column name="camera_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.wildid.entity.CameraModel" lazy="false" fetch="select" name="cameraModel">
+            <column name="camera_model_id" not-null="true"/>
+        </many-to-one>
+        <property name="serialNumber" type="string">
+            <column length="128" name="serial_number"/>
+        </property>
+        <property name="yearPurchased" type="java.lang.Integer">
+            <column name="year_purchased"/>
+        </property>
+        <many-to-one class="org.wildid.entity.Project" fetch="select" name="project">
+            <column name="project_id" not-null="true"/>
+        </many-to-one>
+        <set fetch="select" inverse="true" lazy="true" name="deployments" table="deployment">
+            <key>
+                <column name="camera_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.Deployment"/>
+        </set>
+    </class>
+</hibernate-mapping>

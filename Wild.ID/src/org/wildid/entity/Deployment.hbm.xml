@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.Deployment" optimistic-lock="version" table="deployment">
+        <id name="deploymentId" type="java.lang.Integer">
+            <column name="deployment_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.wildid.entity.BaitType" fetch="select" name="baitType">
+            <column name="bait_type_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.Camera" fetch="select" lazy="false" name="camera">
+            <column name="camera_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.CameraTrap" fetch="select" lazy="false" name="cameraTrap">
+            <column name="camera_trap_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.Event" fetch="select" lazy="false" name="event">
+            <column name="event_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.FeatureType" fetch="select" name="featureType">
+            <column name="feature_type_id" not-null="false"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.FailureType" fetch="select" name="failureType">
+            <column name="failure_type_id" not-null="false"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.Person" fetch="select" lazy="false" name="setupPerson">
+            <column name="set_person_id" not-null="false"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.Person" fetch="select" name="pickupPerson">
+            <column name="pick_person_id" not-null="false"/>
+        </many-to-one>
+        <property name="startTime" type="timestamp">
+            <column length="19" name="start_time" not-null="false"/>
+        </property>
+        <property name="endTime" type="timestamp">
+            <column length="19" name="end_time" not-null="false"/>
+        </property>
+        <property name="quietPeriodSetting" type="string">
+            <column length="128" name="quiet_period_setting"/>
+        </property>
+        <property name="name" type="string">
+            <column length="256" name="name"/>
+        </property>
+        <property name="failureDetail" type="string">
+            <column length="65535" name="failure_detail"/>
+        </property>
+        <property name="restrctionOnAccess" type="string">
+            <column length="250" name="restrction_on_access"/>
+        </property>
+        <property name="baitDetail" type="string">
+            <column length="250" name="bait_detail"/>
+        </property>
+        <property name="featureTypeDetail" type="string">
+            <column length="250" name="feature_type_detail"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="dualDeploymentsForDeployment2Id" table="dual_deployment">
+            <key>
+                <column name="deployment_2_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.DualDeployment"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="dualDeploymentsForDeployment1Id" table="dual_deployment">
+            <key>
+                <column name="deployment_1_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.DualDeployment"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="imageSequences" table="image_sequence">
+            <key>
+                <column name="deployment_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.ImageSequence"/>
+        </set>
+    </class>
+</hibernate-mapping>

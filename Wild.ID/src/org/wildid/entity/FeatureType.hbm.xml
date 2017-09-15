@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.FeatureType" optimistic-lock="version" table="feature_type">
+        <id name="featureTypeId" type="java.lang.Integer">
+            <column name="feature_type_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column length="128" name="name" not-null="true"/>
+        </property>
+        <property name="methodlogy" type="string">
+            <column length="65535" name="methodlogy"/>
+        </property>
+        <!--
+        <set fetch="select" inverse="true" lazy="true" name="deployments" table="deployment">
+          <key>
+            <column name="feature_type_id" not-null="true"/>
+          </key>
+          <one-to-many class="org.wildid.entity.Deployment"/>
+        </set>
+        -->
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,12 @@
+INSERT INTO Wild_ID.feature_type(name) VALUES('Burrow');
+INSERT INTO Wild_ID.feature_type(name) VALUES('Carcass');
+INSERT INTO Wild_ID.feature_type(name) VALUES('Culvert');
+INSERT INTO Wild_ID.feature_type(name) VALUES('Fruiting tree');
+INSERT INTO Wild_ID.feature_type(name) VALUES('Nest site');
+INSERT INTO Wild_ID.feature_type(name) VALUES('Other');
+INSERT INTO Wild_ID.feature_type(name) VALUES('Road underpass/overpass/bridge');
+INSERT INTO Wild_ID.feature_type(name) VALUES('Road, dirt');
+INSERT INTO Wild_ID.feature_type(name) VALUES('Road, paved');
+INSERT INTO Wild_ID.feature_type(name) VALUES('Trail, game');
+INSERT INTO Wild_ID.feature_type(name) VALUES('Trail, hiking/people');
+INSERT INTO Wild_ID.feature_type(name) VALUES('Water source/spring');

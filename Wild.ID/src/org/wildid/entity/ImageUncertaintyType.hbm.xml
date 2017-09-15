@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.ImageUncertaintyType" optimistic-lock="version" table="image_uncertainty_type">
+        <id name="imageUncertaintyTypeId" type="java.lang.Integer">
+            <column name="image_uncertainty_type_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column length="32" name="name" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
+

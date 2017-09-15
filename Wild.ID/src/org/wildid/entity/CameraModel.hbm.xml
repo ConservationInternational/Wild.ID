@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.CameraModel" optimistic-lock="version" table="camera_model">
+        <id name="cameraModelId" type="java.lang.Integer">
+            <column name="camera_model_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column length="128" name="name" not-null="true"/>
+        </property>
+        <property name="maker" type="string">
+            <column length="128" name="maker"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="cameras" table="camera">
+            <key>
+                <column name="camera_model_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.Camera"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="cameraModelExtendTags" table="camera_model_extend_tag">
+            <key>
+                <column name="camera_model_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.CameraModelExtendTag"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="false" name="cameraModelExifFeatures" table="camera_model_exif_feature" sort="org.wildid.entity.CameraModelExifFeatureComparator">
+            <key>
+                <column name="camera_model_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.CameraModelExifFeature"/>
+        </set>
+    </class>
+</hibernate-mapping>

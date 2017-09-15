@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.ImageSpecies" optimistic-lock="version" table="image_species">
+        <id name="imageSpeciesId" type="java.lang.Integer">
+            <column name="image_species_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.wildid.entity.HomoSapiensType" fetch="select" lazy="false" name="homoSapiensType">
+            <column name="homo_sapiens_type_id" not-null="false"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.TaxaCommonEnglishName" fetch="select" lazy="false" name="engishCommonName">
+            <column name="common_name_eng_id" not-null="false"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.FamilyGenusSpecies" fetch="select" lazy="false" name="familyGenusSpecies">
+            <column name="family_genus_species_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.Image" fetch="select" name="image">
+            <column name="image_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.wildid.entity.Person" fetch="select" lazy="false" name="person">
+            <column name="identify_person_id" not-null="true"/>
+        </many-to-one>
+        <property name="individualCount" type="java.lang.Integer">
+            <column name="individual_count"/>
+        </property>    
+        <many-to-one class="org.wildid.entity.ImageUncertaintyType" fetch="select" lazy="false" name="uncertainty">
+            <column name="uncertainty_type_id" not-null="true"/>
+        </many-to-one>
+        <property name="subspecies" type="string">
+            <column length="32" name="subspecies"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="false" name="imageIndividuals" table="image_individual">
+            <key>
+                <column name="image_species_id" not-null="true"/>
+            </key>
+            <one-to-many class="org.wildid.entity.ImageIndividual"/>
+        </set>
+    </class>
+</hibernate-mapping>

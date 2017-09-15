@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.ImageIndividual" optimistic-lock="version" table="image_individual">
+        <id name="imageIndividualId" type="java.lang.Integer">
+            <column name="image_individual_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.wildid.entity.ImageSpecies" fetch="select" name="imageSpecies">
+            <column name="image_species_id" not-null="true"/>
+        </many-to-one>
+        <property name="name" type="string">
+            <column length="32" name="name"/>
+        </property>
+        <property name="sex" type="string">
+            <column length="8" name="sex"/>
+        </property>
+        <many-to-one class="org.wildid.entity.Age" fetch="select" lazy="false" name="age">
+            <column name="age_id" not-null="false"/>
+        </many-to-one>
+        <property name="note" type="string">
+            <column length="65535" name="note"/>
+        </property>
+        <property name="x" type="java.lang.Integer">
+            <column name="x"/>
+        </property> 
+        <property name="y" type="java.lang.Integer">
+            <column name="y"/>
+        </property>       
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2015 3:35:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class catalog="wild_ID" name="org.wildid.entity.Country" optimistic-lock="version" table="country">
+        <id name="countryId" type="java.lang.Integer">
+            <column name="country_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.wildid.entity.Continent" fetch="select" name="continent">
+            <column name="continent_id" not-null="true"/>
+        </many-to-one>
+        <property name="name" type="string">
+            <column length="128" name="name" not-null="true"/>
+        </property>
+        <property name="code" type="string">
+            <column length="4" name="code" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="organizations" table="organization">
+            <key>
+                <column name="country_id"/>
+            </key>
+            <one-to-many class="org.wildid.entity.Organization"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="projects" table="project">
+            <key>
+                <column name="country_id"/>
+            </key>
+            <one-to-many class="org.wildid.entity.Project"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="persons" table="person">
+            <key>
+                <column name="country_id"/>
+            </key>
+            <one-to-many class="org.wildid.entity.Person"/>
+        </set>
+    </class>
+</hibernate-mapping>
